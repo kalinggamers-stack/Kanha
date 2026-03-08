@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sorry Message</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+font-family:sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:#111;
+padding:30px;
+border-radius:20px;
+text-align:center;
+width:320px;
+position:relative;
+}
+
+button{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.yellow{background:yellow;color:black;}
+.green{background:green;color:white;}
+.red{background:red;color:white;}
+
+#noBtn{
+position:absolute;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="app"></div>
+
+<script>
+
+let step=1
+let food=""
+
+function render(){
+
+let html=""
+
+if(step===1){
+
+html=`
+<h1>💖 CUTIEE</h1>
+<p>Aapke liye ek special message hai</p>
+<button class="yellow" onclick="next()">MESSAGE KHOLO</button>
+`
+
+}
+
+if(step===2){
+
+html=`
+<h2>Kya meri galti hai?</h2>
+
+<button onclick="goto3()">
+Haa tumhari hi galti hai
+</button>
+
+<button onclick="goto7()">
+Shayad nahi
+</button>
+`
+
+}
+
+if(step===7){
+
+html=`
+<h2>🥺 Cutie</h2>
+
+<p>
+Cutie aap kitni achhi ho<br>
+but galti meri hai 😭😭
+</p>
+
+<button onclick="goto3()">
+Haa tumhari galti hai
+</button>
+
+<button onclick="goto3()">
+Me kabhi galat nahi hoti
+</button>
+`
+
+}
+
+if(step===3){
+
+html=`
+<h2>🥺 Sorry Cutie</h2>
+<p>Mujhse galti ho gayi</p>
+
+<button class="yellow" onclick="next()">
+Aage Suno
+</button>
+`
+
+}
+
+if(step===4){
+
+html=`
+<h2>"Galti ho gayi Malik"</h2>
+
+<button class="green" onclick="choose('Chalo Momos khaogi mere saath 🥟❤️')">
+Maaf kiya ❤️
+</button>
+
+<button onclick="choose('Maggi khaogi 🍜')">
+Theek hai 😊
+</button>
+
+<button class="red" onclick="step6()">
+Nahi karungi
+</button>
+`
+
+}
+
+if(step===5){
+
+html=`
+<h2>${food}</h2>
+
+<button class="green" onclick="yesFood()">
+Yes ❤️
+</button>
+
+<button id="noBtn" class="red">
+No 😒
+</button>
+`
+
+}
+
+if(step===6){
+
+html=`
+<h2>😭 Please maaf kar do</h2>
+
+<button class="yellow"
+onclick="choose('Banana Shake bana ke pilao kabhi 🥤❤️')">
+
+Theek hai maaf kiya
+
+</button>
+`
+
+}
+
+if(step===8){
+
+html=`
+<h2>💖 Yayyy</h2>
+
+<p>Momos Date Pakki 🥟❤️</p>
+
+<button onclick="restart()">
+Restart
+</button>
+`
+
+}
+
+document.getElementById("app").innerHTML=html
+
+if(step===5){
+moveButton()
+}
+
+}
+
+function moveButton(){
+
+let btn=document.getElementById("noBtn")
+
+btn.onmouseover=function(){
+
+let x=Math.random()*200
+let y=Math.random()*150
+
+btn.style.left=x+"px"
+btn.style.top=y+"px"
+
+}
+
+}
+
+function next(){
+step++
+rendert()
+}
+
+function goto3(){
+step=3
+render()
+}
+
+function goto7(){
+step=7
+render()
+}
+
+function choose(f){
+food=f
+step=5
+render()
+}
+
+function yesFood(){
+step=8
+render()
+}
+
+function step6(){
+step=6
+render()
+}
+
+function restart(){
+step=1
+render()
+}
+
+render()
+
+</script>
+
+</body>
+</html>
